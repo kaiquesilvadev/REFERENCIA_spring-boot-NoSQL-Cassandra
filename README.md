@@ -92,7 +92,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 	@Override
 	protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
 		return Collections.singletonList(CreateKeyspaceSpecification.createKeyspace(keyspace).ifNotExists()
-				.with(KeyspaceOption.DURABLE_WRITES, true).withSimpleReplication(3L));
+				.with(KeyspaceOption.DURABLE_WRITES, true).withSimpleReplication(1L));
 	}
 
 	@Override
