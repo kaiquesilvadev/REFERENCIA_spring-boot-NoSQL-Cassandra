@@ -1,10 +1,15 @@
 package com.kaique.cassandra.model.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.cassandra.core.mapping.Frozen;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+import com.kaique.cassandra.model.embedded.Prop;
 
 @Table(value = "products")
 public class Product {
@@ -16,7 +21,9 @@ public class Product {
 	private Instant moment;
 	private String name;
 	private String description;
-
+	
+	private List<@Frozen Prop> props = new ArrayList<>();
+	
 	public Product() {
 	}
 
@@ -78,4 +85,7 @@ public class Product {
 		this.description = description;
 	}
 
+	public List<Prop> getProps() {
+		return props;
+	}
 }
