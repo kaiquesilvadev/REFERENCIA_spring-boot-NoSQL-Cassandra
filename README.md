@@ -105,6 +105,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 		return keyspace;
 	}
 
+ 	//Trocar o caminho do pacote das entidades pelo do seu projeto 
 	@Override
 	public String[] getEntityBasePackages() {
 		return new String[] { "com.devsuperior.meuprojeto.model.entities" };
