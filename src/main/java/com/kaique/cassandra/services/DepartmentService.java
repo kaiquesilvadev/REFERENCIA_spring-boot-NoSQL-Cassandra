@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kaique.cassandra.exceptions.ResourceNotFoundException;
 import com.kaique.cassandra.model.dto.DepartmentDTO;
 import com.kaique.cassandra.model.entities.Department;
 import com.kaique.cassandra.repository.DepartmentRepository;
@@ -32,4 +33,16 @@ public class DepartmentService {
 		Department entity = getById(id);
 		return new DepartmentDTO(entity);
 	}
+	
+	public DepartmentDTO insert(DepartmentDTO dto) {
+		Department entity = new Department();
+		entity.setId(UUID.randomUUID());
+		copyDtoToEntity(dto, entity);
+		entity = repository.save(entity);
+		return new DepartmentDTO(entity);		
+	}
+	
+	private void copyDtoToEntity(DepartmentDTO dto, Department entity) {
+		entity.setName(dto.getName());
+	}	
 }	
